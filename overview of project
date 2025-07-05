@@ -1,0 +1,3 @@
+## Project Overview
+
+This project implements and compares dynamic pricing models for urban parking lots. Utilizing a dataset containing historical parking occupancy, traffic conditions, queue lengths, and other relevant factors, the project develops three distinct pricing strategies: a Baseline Linear Model, a more sophisticated Demand-Based Price Function, and a Competitive Pricing Model that considers the influence of nearby parking lot prices. The goal is to explore how different data-driven approaches can be used to dynamically adjust parking prices in real-time to potentially optimize occupancy and revenue.
