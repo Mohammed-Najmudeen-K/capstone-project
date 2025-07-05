@@ -1,0 +1,29 @@
+## Project Architecture and Workflow
+
+The project follows a structured workflow to implement and evaluate dynamic pricing models for urban parking lots. The main stages are as follows:
+
+1.  **Data Ingestion and Initial Exploration:** The process begins by loading the historical parking data from the provided CSV file. The problem statement, provided as a PDF, is also read to understand the project requirements and data description. Initial data exploration is performed to understand the dataset's structure, identify missing values, and examine key statistics.
+
+2.  **Data Preprocessing and Feature Engineering:** This crucial stage prepares the raw data for modeling. It involves:
+    *   Combining separate date and time columns into a single `DateTime` column.
+    *   Handling missing values in relevant columns like `Occupancy`, `QueueLength`, and `IsSpecialDay`.
+    *   Converting data types to ensure numerical columns are correctly represented.
+    *   Calculating the `OccupancyRate` by dividing `Occupancy` by `Capacity`.
+    *   Extracting time-based features from the `DateTime` column (hour, day of week, day of year, month) to capture temporal patterns.
+    *   Encoding categorical features like `TrafficConditionNearby` (using ordinal mapping) and `VehicleType` (using one-hot encoding) to make them suitable for model input.
+
+3.  **Model Implementation - Baseline Linear Model:** The first pricing model implemented is a simple linear model. It calculates the price at the next time step based on the price at the current time step and the current occupancy rate. This model serves as a basic reference point.
+
+4.  **Model Implementation - Demand-Based Price Function:** This more advanced model introduces a demand function that combines multiple features, including occupancy rate, queue length, traffic condition, special day indicator, and vehicle type weight. The calculated demand is then normalized and used to adjust the base price, staying within defined bounds to ensure realistic price variations.
+
+5.  **Model Implementation - Competitive Pricing Model:** Building upon the Demand-Based model, the competitive model incorporates the influence of nearby parking lot prices.
+    *   Geographical distances between unique parking lots are calculated using latitude and longitude.
+    *   Nearby competitors are identified based on a defined distance threshold.
+    *   The prices of these competitors at each time step are retrieved.
+    *   A competitive pricing logic is applied, adjusting the Model 2 price based on the current lot's occupancy/queue and the average price of its competitors. This logic aims to make pricing adaptive to the local competitive landscape.
+
+6.  **Model Analysis and Comparison:** After implementing all models, their outputs (generated prices) are analyzed. This includes examining descriptive statistics, visualizing price distributions (histograms, box plots), and plotting price trends over time for selected parking lots. A simple revenue proxy metric is also calculated and compared across models to get an initial sense of their potential performance. The behavior of the competitive model's price in relation to competitor prices is also examined.
+
+7.  **Summary and Conclusion:** The project concludes with a summary of the entire process, a discussion of the key findings from the model comparisons, a list of assumptions made during the implementation, an explanation of how demand and competition influence the pricing in the developed models, and suggestions for potential improvements and future work.
+
+This workflow ensures a systematic approach from raw data to the development and evaluation of different dynamic pricing strategies.
