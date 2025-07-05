@@ -1,0 +1,10 @@
+## Tech Stack
+
+*   **Programming Language:** Python
+*   **Libraries:**
+    *   pandas (for data manipulation and analysis)
+    *   numpy (for numerical operations)
+    *   matplotlib (for data visualization)
+    *   seaborn (for enhanced data visualization)
+    *   PyMuPDF (fitz) (for reading the problem statement PDF)
+*   **Environment:** Google Colab (for development and execution)
